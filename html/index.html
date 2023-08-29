@@ -3,15 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../styles/reset.css">
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
-<h2>todo list:</h2>
-<button id="task_add_button">add task</button>
-<button id="edit_task_button" >edit</button>
-<input value="First task" id="task_text" type="text">
-<script type="module" src="../js/code.js"></script>
-<!--<script src="../js/utils/create_delete_buttons_map.js"></script>-->
-<!--<script src="../js/utils/create_tasks_map.js"></script>-->
+<div class="app">
+    <header class="header">
+        <h2 class="title">todo list:</h2>
+        <div class="container">
+            <form id="todo-form" action="">
+                <input class="task_input" value="First task" id="task_text" type="text">
+                <button class="button" type="submit" id="task_add_button">add task</button>
+            </form>
+        </div>
+    </header>
+    <div class="sections">
+    <section class="statistics_section">
+    <div class="statistics_container" id="">
+        <ul class="stats">
+            <li class="task_container">
+                <span>remaining</span>
+                <span id="remaining-tasks"> 0</span>
+            </li>
+            <li class="task_container">
+                <span>completed</span>
+                <span id="completed-tasks"> 0</span>
+            </li>
+            <li class="task_container">
+                <span>total</span>
+                <span id="total-tasks"> 0</span>
+            </li>
+        </ul>
+    </div>
+    </section>
+    <section class="task_section">
+        <ul>
+            <li>
+                <div>
+                    <input name="" type="checkbox">
+                    <span>task 1</span>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <input name="" type="checkbox">
+                    <span>task 2</span>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <input name="" type="checkbox">
+                    <span>task 3</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+    </div>
+    <script type="module" src="../js/code.js"></script>
 </body>
 </html>
