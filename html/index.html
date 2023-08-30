@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>oliva.todo</title>
     <link rel="stylesheet" href="../styles/reset.css">
     <link rel="stylesheet" href="../styles/style.css">
 </head>
@@ -12,7 +12,7 @@
         <h2 class="title">todo list:</h2>
         <div class="container">
             <form id="todo-form" action="">
-                <input class="task_input" value="First task" id="task_text" type="text">
+                <input class="task_input"  id="task_input" type="text">
                 <button class="button" type="submit" id="task_add_button">add task</button>
             </form>
         </div>
@@ -37,25 +37,8 @@
             </div>
         </section>
         <section class="task_section">
-            <ul>
-                <li>
-                    <div>
-                        <input name="" type="checkbox">
-                        <span>task 1</span>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <input name="" type="checkbox">
-                        <span>task 2</span>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <input name="" type="checkbox">
-                        <span>task 3</span>
-                    </div>
-                </li>
+            <ul id="todos" class="todos">
+
             </ul>
         </section>
     </div>

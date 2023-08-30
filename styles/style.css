@@ -36,7 +36,7 @@ body {
 
 .button {
     font-size: 18px;
-    background-color: orangered;
+    background-color: yellowgreen;
     border-radius: 15px;
     border: 0 solid black;
     padding: 6px;
@@ -47,7 +47,7 @@ button:hover {
 }
 
 button:active {
-    background-color: yellow;
+    background-color: lightseagreen;
 }
 
 .task_input {
@@ -125,9 +125,7 @@ span#remaining-tasks {
 }
 
 .task_section ul li div {
-    display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     width: 300px;
     font-size: 28px;
     font-family: Consolas, sans-serif;
@@ -144,6 +142,16 @@ span#remaining-tasks {
 }
 
 .task_section ul li div span {
-    width: 290px;
+    width: 250px;
     overflow-wrap: break-word;
+}
+
+.remove_task{
+    width: 30px;
+    height: 30px;
+    position: relative;
+
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
 }
