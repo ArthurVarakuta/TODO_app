@@ -27,7 +27,7 @@ function create_task(task) {
      <input name="tasks" type="checkbox" id="${task.id}" ${task.isCompleted ? 'checked' : ''}>
         <span ${!task.isCompleted ? 'contenteditable' : ''}>${task.name}</span>
          <button class="remove_task" >
-         <p class="remove_task_icon" style="color: red">x</p>
+         <p class="remove_task_icon" >x</p>
          </button>
     </div>
     `
@@ -48,12 +48,36 @@ function remove_task(_task_id) {
 
 function count_tasks() {
     const completed_task_array = tasks.filter((task) => {
-        task.isCompleted === true;
+        task.isCompleted = true;
     })
 
     total_tasks.textContent = tasks.length;
     completed_tasks.textContent = completed_task_array.length;
     remaining_tasks.textContent = tasks.length - completed_task_array.length;
+}
+
+function update_task(task_id, event_target) {
+    const task = tasks.find((task) => task.id === parseInt(task_id));
+
+    if (event_target.hasAttribute('contenteditable')) {
+        task.name = event_target.textContent;
+    } else {
+        const span = event_target.nextElementSibling;
+        const parent = event_target.closest('li');
+
+        task.isCompleted = !task.isCompleted;
+        if (task.isCompleted) {
+            span.removeAttribute('contenteditable');
+            parent.classList.add('complete');
+        } else {
+            span.setAttribute('contenteditable', 'true');
+            parent.classList.remove('complete');
+        }
+    }
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    count_tasks();
+
 }
 
 
@@ -78,12 +102,18 @@ todo_form.addEventListener('submit', function (event) {
     create_task(task);
     todo_form.reset();
     main_input.focus();
+    count_tasks();
 })
 
 todo_list.addEventListener('click', (e) => {
-    if (e.target.classList.contains("remove_task") || e.target.classList.contains('remove_task_icon')){
+    if (e.target.classList.contains("remove_task") || e.target.classList.contains('remove_task_icon')) {
         const task_id = e.target.closest('li').id;
 
         remove_task(task_id);
     }
+})
+
+todo_list.addEventListener('input', (e) => {
+    const task_id = e.target.closest('li').id;
+    update_task(task_id, e.target);
 })
