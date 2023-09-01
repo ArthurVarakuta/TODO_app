@@ -23,8 +23,8 @@ function create_task(task) {
     }
 
     let task_element_html = `
-    <div>
-     <input name="tasks" type="checkbox" id="${task.id}" ${task.isCompleted ? 'checked' : ''}>
+    <div class="tasks_container">
+     <input class="tick_input" name="tasks" type="checkbox" id="${task.id}" ${task.isCompleted ? 'checked' : ''}>
         <span ${!task.isCompleted ? 'contenteditable' : ''}>${task.name}</span>
          <button class="remove_task" >
          <p class="remove_task_icon" >x</p>
@@ -74,6 +74,8 @@ function update_task(task_id, event_target) {
             parent.classList.remove('complete');
         }
     }
+
+
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
     count_tasks();
@@ -98,6 +100,13 @@ todo_form.addEventListener('submit', function (event) {
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
+    let tick_input =document.getElementsByClassName('tick_input')
+    let container = document.getElementsByClassName('tasks_container');
+    if (tick_input.hasAttribute('checked')){
+        container.classList.add('tasks_container_inactive');
+    }else{
+        container.classList.remove('tasks_container_inactive');
+    }
 
     create_task(task);
     todo_form.reset();
@@ -105,15 +114,15 @@ todo_form.addEventListener('submit', function (event) {
     count_tasks();
 })
 
-todo_list.addEventListener('click', (e) => {
-    if (e.target.classList.contains("remove_task") || e.target.classList.contains('remove_task_icon')) {
-        const task_id = e.target.closest('li').id;
+todo_list.addEventListener('click', (event) => {
+    if (event.target.classList.contains("remove_task") || event.target.classList.contains('remove_task_icon')) {
+        const task_id = event.target.closest('li').id;
 
         remove_task(task_id);
     }
 })
 
-todo_list.addEventListener('input', (e) => {
-    const task_id = e.target.closest('li').id;
-    update_task(task_id, e.target);
+todo_list.addEventListener('input', (event) => {
+    const task_id = event.target.closest('li').id;
+    update_task(task_id, event.target);
 })
