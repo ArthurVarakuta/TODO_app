@@ -33,7 +33,7 @@ function create_task(task) {
     `
     task_element.innerHTML = task_element_html;
     todo_list.appendChild(task_element);
-    count_tasks();
+    // count_tasks();
 }
 
 function remove_task(_task_id) {
@@ -43,17 +43,17 @@ function remove_task(_task_id) {
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
     document.getElementById(_task_id).remove();
-    count_tasks();
+
+    // count_tasks();
 }
 
 function count_tasks() {
-    const completed_task_array = tasks.filter((task) => {
+    const completed_tasks_array = tasks.filter((task) => {
         task.isCompleted = true;
     })
-
     total_tasks.textContent = tasks.length;
-    completed_tasks.textContent = completed_task_array.length;
-    remaining_tasks.textContent = tasks.length - completed_task_array.length;
+    completed_tasks.textContent = completed_tasks_array.length;
+    remaining_tasks.textContent = tasks.length - completed_tasks_array.length;
 }
 
 function update_task(task_id, event_target) {
@@ -73,13 +73,17 @@ function update_task(task_id, event_target) {
             span.setAttribute('contenteditable', 'true');
             parent.classList.remove('complete');
         }
+
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+
+        // count_tasks();
     }
 
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
-    count_tasks();
-
+    // count_tasks();
+    //works in wrong way plus with prikols
 }
 
 
@@ -100,18 +104,10 @@ todo_form.addEventListener('submit', function (event) {
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
-    let tick_input =document.getElementsByClassName('tick_input')
-    let container = document.getElementsByClassName('tasks_container');
-    if (tick_input.hasAttribute('checked')){
-        container.classList.add('tasks_container_inactive');
-    }else{
-        container.classList.remove('tasks_container_inactive');
-    }
-
     create_task(task);
     todo_form.reset();
     main_input.focus();
-    count_tasks();
+    // count_tasks();
 })
 
 todo_list.addEventListener('click', (event) => {

@@ -164,6 +164,7 @@ span#remaining-tasks {
     background-color: lightslategrey;
     text-decoration: line-through;
     color: lightgrey;
+    border-radius: 10px;
 }
 
 .tasks_container{
